@@ -3,6 +3,7 @@ version '2.0-SNAPSHOT'
 
 buildscript {
     repositories {
+        mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -13,7 +14,21 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.1.10"
+
     }
+
 }
 
+apply plugin: "idea"
 apply plugin: 'org.jetbrains.intellij'
+//apply plugin: "info.solidsoft.pitest"
+//apply plugin: "org.pitest:pitest-maven:1.1.11"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.intellij', name: 'openapi', version: '6.0.5'
+    compile group: 'org.pitest', name: 'pitest-maven', version: '1.1.5'
+}
