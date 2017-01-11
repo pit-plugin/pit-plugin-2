@@ -1,19 +1,22 @@
-group 'pl.edu.uj.ii'
-version '2.0-SNAPSHOT'
-
 buildscript {
     repositories {
+        mavenCentral()
+        //Needed only for SNAPSHOT versions
+        //maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
         maven {
-            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
+            url "http://dl.bintray.com/jetbrains/intellij-plugin-service"
         }
-
     }
     dependencies {
-        classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.1.10"
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.10'
+        classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.2.0"
+        classpath "junit:junit:4.12"
     }
 }
 
+apply plugin: "info.solidsoft.pitest"
+apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
