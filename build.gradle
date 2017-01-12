@@ -1,6 +1,3 @@
-group 'pl.edu.uj.ii'
-version '2.0-SNAPSHOT'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -8,13 +5,11 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
         maven {
-            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
+            url "http://dl.bintray.com/jetbrains/intellij-plugin-service"
         }
-
     }
     dependencies {
         classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.1.10"
-
     }
 
 }
@@ -28,7 +23,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile group: 'com.intellij', name: 'openapi', version: '6.0.5'
-    compile group: 'org.pitest', name: 'pitest-maven', version: '1.1.5'
-}
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.jetbrains.intellij'
+
