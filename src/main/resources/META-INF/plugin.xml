@@ -22,7 +22,15 @@
     <depends>com.intellij.modules.lang</depends>
     -->
 
+    <project-components>
+        <component>
+            <interface-class>com.intellij.openapi.components.ProjectComponent</interface-class>
+            <implementation-class>PitPluginComponent</implementation-class>
+        </component>
+    </project-components>
+
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="PitPlugin" anchor="bottom" factoryClass="PitPluginToolWindowFactory" />
     </extensions>
 
     <actions>
