@@ -19,7 +19,6 @@ import java.util.TreeMap;
 public class Output {
     private static Output instance;
     private static final Object lock = new Object();
-
     private ConsoleView consoleView;
 
     private Output() {
@@ -74,5 +73,6 @@ public class Output {
     public void dispose() {
         if(consoleView != null)
             consoleView.dispose();
+
     }
 }
