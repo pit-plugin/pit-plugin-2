@@ -34,9 +34,9 @@
     </extensions>
 
     <actions>
-        <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
+        <group id="PitPlugin.TestMenu" text="Test" description="Test menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
+            <action id="PitPlugin.Textboxes" class="TestAction" text="Sample output" description="Prints sample output to PitPluginConsole"/>
         </group>
     </actions>
 

@@ -12,6 +12,7 @@ public class PitPluginComponent implements ProjectComponent {
 
     @Override
     public void projectClosed() {
+        // dispose output console
         Output.getInstance().dispose();
     }
 
