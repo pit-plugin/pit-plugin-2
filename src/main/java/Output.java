@@ -3,22 +3,13 @@ import com.intellij.execution.filters.TextConsoleBuilderFactory;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
-import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowAnchor;
-import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.ui.content.Content;
-import com.intellij.ui.content.ContentFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Output {
-    private static Output instance;
     private static final Object lock = new Object();
+    private static Output instance;
     private ConsoleView consoleView;
 
     private Output() {
@@ -46,7 +37,7 @@ public class Output {
     }
 
     private ConsoleView getConsoleView() {
-        if(consoleView == null) {
+        if (consoleView == null) {
             throw new RuntimeException("Console view was not properly initialized or disposed before using.");
         }
         return consoleView;
@@ -71,7 +62,7 @@ public class Output {
     }
 
     public void dispose() {
-        if(consoleView != null)
+        if (consoleView != null)
             consoleView.dispose();
 
     }

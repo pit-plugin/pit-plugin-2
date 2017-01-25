@@ -1,5 +1,3 @@
-import com.intellij.execution.ui.ConsoleViewContentType;
-
 import java.io.IOException;
 import java.util.Scanner;
 
