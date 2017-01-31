@@ -23,19 +23,18 @@ public class PitRunner {
                 "/home/pawel/libs/pit-example-master"
         );
 
-        System.out.println(command);
+        Output.getInstance().println(command);
         Process process = Runtime.getRuntime().exec(command);
 
 
         Scanner sc = new Scanner(process.getInputStream());
         while (sc.hasNext()) {
-            System.out.println(sc.nextLine());
+            Output.getInstance().println(sc.nextLine());
         }
         sc = new Scanner(process.getErrorStream());
         while (sc.hasNext()) {
-            System.out.println(sc.nextLine());
+            Output.getInstance().error(sc.nextLine());
         }
         process.waitFor();
-
     }
 }
