@@ -6,7 +6,25 @@ import java.util.Scanner;
  */
 public class PitRunner {
     public void runMutation() throws IOException, InterruptedException {
+        String cp, classPath, reportDir, sourceDirs;
 
+        String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.contains("win")){
+            cp = "\"lib/*\"";
+            classPath = "C:\\Users\\Patryk\\Documents\\Git\\pit-example-master\\target\\classes," +
+                    "C:\\Users\\Patryk\\Documents\\Git\\pit-example-master\\target\\test-classes";
+            reportDir = "C:\\Users\\Patryk\\temp";
+            sourceDirs = "C:\\Users\\Patryk\\Documents\\Git\\pit-example-master";
+
+        } else {
+            cp = "./lib/pitest-1.1.11.jar:./lib/pitest-command-line-1.1.11.jar:" +
+                    "./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar";
+            classPath = "/home/pawel/libs/pit-example-master/target/classes," +
+                    "/home/pawel/libs/pit-example-master/target/test-classes";
+            reportDir = "/home/pawel/temp";
+            sourceDirs = "/home/pawel/libs/pit-example-master";
+
+        }
         String command = String.format("java  " +
                         "-cp %s  " +
                         "org.pitest.mutationtest.commandline.MutationCoverageReport  " +
@@ -15,12 +33,12 @@ public class PitRunner {
                         "--targetClasses %s " +
                         "--targetTests %s " +
                         "--sourceDirs %s",
-                "./lib/pitest-1.1.11.jar:./lib/pitest-command-line-1.1.11.jar:./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar",
-                "/home/pawel/libs/pit-example-master/target/classes,/home/pawel/libs/pit-example-master/target/test-classes",
-                "/home/pawel/temp",
+                cp,
+                classPath,
+                reportDir,
                 "pitexample.*",
                 "pitexample.*",
-                "/home/pawel/libs/pit-example-master"
+                sourceDirs
         );
 
         Output.getInstance().println(command);
