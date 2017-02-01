@@ -33,7 +33,7 @@ public class PitRunner {
         }
         sc = new Scanner(process.getErrorStream());
         while (sc.hasNext()) {
-            Output.getInstance().error(sc.nextLine());
+           Output.getInstance().error(sc.nextLine());
         }
         process.waitFor();
     }
