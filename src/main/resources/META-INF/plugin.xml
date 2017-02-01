@@ -2,7 +2,7 @@
     <id>org.jetbrains</id>
     <name>my_plugin</name>
     <version>0.0.1</version>
-    <vendor email="dummy" url="dummy">dummy</vendor>
+    <vendor email="pawel.bogdan@doctoral.uj.edu.pl" url="http://ww2.ii.uj.edu.pl/~bogdan/">PBuj</vendor>
 
     <description><![CDATA[
       Sample plugin.<br>
@@ -34,9 +34,9 @@
     </extensions>
 
     <actions>
-        <group id="PitPlugin.TestMenu" text="Test" description="Test menu">
+        <group id="PitPlugin.TestMenu" text="Pit Plugin" description="Pit Plugin menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="PitPlugin.Textboxes" class="TestAction" text="Sample output" description="Prints sample output to PitPluginConsole"/>
+            <action id="PitPlugin.Textboxes" class="TestAction" text="Run Pitests" description="Prints command to PitPluginConsole"/>
         </group>
     </actions>
 
