@@ -31,6 +31,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="PitPlugin" anchor="bottom" factoryClass="PitPluginToolWindowFactory" />
+        <configurationType implementation="PitestConfigurationType"/>
     </extensions>
 
     <actions>
