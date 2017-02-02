@@ -6,7 +6,13 @@ import java.util.Scanner;
  */
 public class PitRunner {
     public void runMutation() throws IOException, InterruptedException {
-
+        String cp, OS = System.getProperty("os.name").toLowerCase();
+        if(OS.contains("win")){
+            cp = "\"lib/*\"";
+        } else {
+            cp = "./lib/pitest-1.1.11.jar:./lib/pitest-command-line-1.1.11.jar:" +
+                    "./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar";
+        }
         String command = String.format("java  " +
                         "-cp %s  " +
                         "org.pitest.mutationtest.commandline.MutationCoverageReport  " +
@@ -15,12 +21,13 @@ public class PitRunner {
                         "--targetClasses %s " +
                         "--targetTests %s " +
                         "--sourceDirs %s",
-                "./lib/pitest-1.1.11.jar:./lib/pitest-command-line-1.1.11.jar:./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar",
-                "/home/pawel/libs/pit-example-master/target/classes,/home/pawel/libs/pit-example-master/target/test-classes",
-                "/home/pawel/temp",
+                cp,
+                "../pit-example-master/target/classes," +
+                        "../pit-example-master/target/test-classes",
+                "../pitReports",
                 "pitexample.*",
                 "pitexample.*",
-                "/home/pawel/libs/pit-example-master"
+                "../pit-example-master"
         );
 
         Output.getInstance().println(command);
