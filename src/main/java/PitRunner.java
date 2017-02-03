@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -7,6 +8,11 @@ import java.util.Scanner;
 public class PitRunner {
     public void runMutation() throws IOException, InterruptedException {
         String cp, OS = System.getProperty("os.name").toLowerCase();
+        String sourceDir = System.getProperty("user.dir");
+        String reportsDir = "../pitReports";
+        String classpath = sourceDir + File.separator + "target" + File.separator + "classes,"
+                + sourceDir + File.separator + "target" + File.separator + "test-classes";
+
         if(OS.contains("win")){
             cp = "\"lib/*\"";
         } else {
@@ -22,12 +28,11 @@ public class PitRunner {
                         "--targetTests %s " +
                         "--sourceDirs %s",
                 cp,
-                "../pit-example-master/target/classes," +
-                        "../pit-example-master/target/test-classes",
-                "../pitReports",
+                classpath,
+                reportsDir,
                 "pitexample.*",
                 "pitexample.*",
-                "../pit-example-master"
+                sourceDir
         );
 
         Output.getInstance().println(command);
