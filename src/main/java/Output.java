@@ -3,9 +3,12 @@ import com.intellij.execution.filters.TextConsoleBuilderFactory;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
 import com.intellij.openapi.project.Project;
+import javafx.util.Pair;
+import javafx.event.EventHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Class used to print output to PitPlugin console.
@@ -17,6 +20,7 @@ public class Output {
     private ConsoleView consoleView;
 
     private Output() {
+
     }
 
     /**
@@ -34,6 +38,7 @@ public class Output {
     }
 
     public JPanel createJPanel(Project project) {
+
         consoleView = TextConsoleBuilderFactory.getInstance().createBuilder(project).getConsole();
         JComponent consolePanel = consoleView.getComponent();
 
@@ -41,13 +46,16 @@ public class Output {
         panel.setLayout(new BorderLayout());
         panel.add(consolePanel, BorderLayout.CENTER);
         return panel;
+
     }
 
     private ConsoleView getConsoleView() {
+
         if (consoleView == null) {
             throw new RuntimeException("Console view was not properly initialized or disposed before using.");
         }
         return consoleView;
+
     }
 
     /**
@@ -75,6 +83,39 @@ public class Output {
         ConsoleView cv = getConsoleView();
         cv.printHyperlink(hyperlink, info);
     }
+
+    /*
+     * Prints hyperlinks with reference to code
+     */
+
+    public void hyperlink(MyHyperlink hyperlink){
+
+        ConsoleView cv = getConsoleView();
+        //Display MyHiperlink to console
+        cv.printHyperlink(hyperlink.getText(),hyperlink);
+
+        // Set hyperlink handle
+        hyperlink.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+
+                if ( event.getEventType().equals(Event.MOUSE_ENTER) && !hyperlink.getText().equals("") ){
+
+                    Pair<String,Integer> hyperlinkParameters = PitestHandleOutputEvent.paraseHyperlink(hyperlink);
+
+                    String filePath = hyperlinkParameters.getKey();
+
+                    Integer rowNumber = hyperlinkParameters.getValue();
+
+                    PitestHandleOutputEvent.goToCodeLine(filePath,rowNumber);
+
+                }
+            }
+
+        });//End of setOnAction
+
+    }//End of hyperlink
 
     /**
      * Disposed the console resources, need to be called when closing a project.
